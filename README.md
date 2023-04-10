@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9c5b68df-e12d-40c5-91d1-419cb03d926c/deploy-status)](https://app.netlify.com/sites/summoner-tools/deploys)
+
 # SummonerTools
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
