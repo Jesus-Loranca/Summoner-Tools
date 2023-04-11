@@ -14,7 +14,7 @@
 					<div class="col-6">
 						<h4 class="pb-3">Stars</h4>
 						<div *ngFor="let rarity of reversedRarities">
-							<p>{{ rarity }}</p>
+							<p>{{ rarity.name }}</p>
 
 						</div>
 					</div>
@@ -29,35 +29,12 @@
 			</div>
 		</div>
 
-		<form class="form-group row py-5">
+		<form class="form-group row py-5" [formGroup]="heroesForm" (ngSubmit)="onSubmit()">
 			<div class="row d-flex justify-content-center">
-				<div class="col-2">
-					<select class="form-control" id="hero_1">
-						<option *ngFor="let rarity of rarities">{{ rarity }}</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="form-control" id="hero_2">
-						<option *ngFor="let rarity of rarities">{{ rarity }}</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="form-control" id="hero_2">
-						<option *ngFor="let rarity of rarities">{{ rarity }}</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="form-control" id="hero_4">
-						<option *ngFor="let rarity of rarities">{{ rarity }}</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="form-control" id="hero_5">
-						<option *ngFor="let rarity of rarities">{{ rarity }}</option>
+				<div class="col-2" *ngFor="let position of [1, 2, 3, 4, 5]">
+					<select class="form-control" id="{{ position }}" formControlName="{{ position }}" (change)="onOptionSelected()">
+						<option value="0" selected>Select a Hero</option>
+						<option *ngFor="let rarity of rarities" value="{{ rarity.id }}">{{ rarity.name }}</option>
 					</select>
 				</div>
 			</div>

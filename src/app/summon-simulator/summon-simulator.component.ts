@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Rarity, rarities } from 'src/@types/rarities';
 
 @Component({
 	selector: 'app-summon-simulator',
@@ -8,36 +10,54 @@ import { Component } from '@angular/core';
 
 export class SummonSimulatorComponent {
 	constructor() {
-		this.currentOdds = this.initialOdds[0];
+		this.resetOdds();
 	}
 
-	rarities: string[] = [
-		'1 Star',
-		'2 Star',
-		'3 Star',
-		'4 Star',
-		'5 Star',
-		'Crimson',
-	];
+	rarities = rarities;
+	reversedRarities: Rarity[] = (JSON.parse(JSON.stringify(rarities))).reverse();
 
-	reversedRarities: string[] = [
-		'Crimson',
-		'5 Star',
-		'4 Star',
-		'3 Star',
-		'2 Star',
-		'1 Star',
-	];
-
-	initialOdds: number[][] = [
-		[0.2, 0.8, 3, 10, 30, 56],
-		[0, 0, 0, 0, 7.2, -7.2],
-		[0, 0, 0, 5.2, 4, -9.2],
-		[0, 0, 3.4, 8.8, -2, -10.2],
-		[0.56, 2.24, 7.4, 4, -4, -10.2],
-		[1.96, 5.84, 7.4, 0, -5, -10.2],
-		[3.96, 6.84, 5.4, -1, -5, -10.2],
-	];
-
+	initialOdds: number[] = [0.2, 0.8, 3, 10, 30, 56];
 	currentOdds: number[] = [];
+
+	heroesForm = new FormGroup({
+		1: new FormControl('0'),
+		2: new FormControl('0'),
+		3: new FormControl('0'),
+		4: new FormControl('0'),
+		5: new FormControl('0'),
+	});
+
+	resetOdds(): void {
+		this.currentOdds = this.initialOdds;
+	}
+
+	calculateOdds(): void {
+		Object.keys(this.heroesForm.controls).forEach(key => {
+			const heroValue = this.heroesForm.get(key)?.value;
+
+			if (heroValue === '0') {
+				return;
+			}
+
+			this.currentOdds = this.currentOdds.map(
+				(number, index) => number + this.rarities[heroValue - 1].odds[index]
+			);
+		});
+	}
+
+	roundOdds(): void {
+		this.currentOdds.forEach(
+			(value, index) => this.currentOdds[index] = Math.round((value + Number.EPSILON) * 100) / 100
+		)
+	}
+
+	onOptionSelected(): void {
+		this.resetOdds();
+		this.calculateOdds();
+		this.roundOdds();
+	}
+
+	onSubmit() {
+		//
+	}
 }
