@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+	color: #778cac !important;
+	border-color: #778cac !important;
+	background-color: #1a1a22 !important;
+
+	h1, h2, h3, h4 {
+		color: #fff;
+	}
+
+	a {
+		color: #778cac;
+		text-decoration: none;
+		font-weight: 400;
+
+		&:hover {
+			color: #fff;
+		}
+
+		&.active {
+			color: #f7dc5d;
+			font-weight: 500;
+		}
+	}
+
+	nav {
+		background-color: #212330;
+		border-color: #3e4859;
+		border-bottom: 1px solid;
+		position: fixed;
+		z-index: 999;
+		font-size: 18px;
+		width: 100%;
+		padding: 25px;
+	}
+
+	button {
+		&.btn-primary {
+			color: #1a1a22;
+			background-color: #f7dc5d;
+			border: none;
+			font-weight: 600;
+			height: 40px;
+
+			&:hover {
+				color: #1a1a22;
+				background-color: #ffe87b;
+				border: none;
+			}
+		}
+	}
+
+	form {
+		select.form-control {
+			color: #fff;
+			background-color: #3e4859;
+			border-color: #778cac;
+		}
+	}
+
+	.container {
+		padding-top: 200px;
+	}
+}
