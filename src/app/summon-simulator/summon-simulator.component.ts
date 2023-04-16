@@ -27,6 +27,8 @@ export class SummonSimulatorComponent {
 		5: new FormControl('0'),
 	});
 
+	results: string[] = [];
+
 	resetOdds(): void {
 		this.currentOdds = this.initialOdds;
 	}
@@ -48,7 +50,24 @@ export class SummonSimulatorComponent {
 	roundOdds(): void {
 		this.currentOdds.forEach(
 			(value, index) => this.currentOdds[index] = Math.round((value + Number.EPSILON) * 100) / 100
-		)
+		);
+	}
+
+	shuffle(array: string[]): string[] {
+		return array.sort(() => Math.random() - 0.5);
+	}
+
+	summon(): void {
+		let chancesPool: string[] = [];
+		const oddsMultiplied = this.currentOdds.map((odds) => { return odds * 100 });
+
+		this.reversedRarities.forEach(
+			(value, index) => chancesPool = chancesPool.concat(Array<string>(oddsMultiplied[index]).fill(value.name))
+		);
+
+		chancesPool = this.shuffle(chancesPool);
+
+		this.results.push(chancesPool[Math.floor(Math.random() * chancesPool.length)]);
 	}
 
 	onOptionSelected(): void {
@@ -57,7 +76,7 @@ export class SummonSimulatorComponent {
 		this.roundOdds();
 	}
 
-	onSubmit() {
-		//
+	onSubmit(): void {
+		this.summon();
 	}
 }
