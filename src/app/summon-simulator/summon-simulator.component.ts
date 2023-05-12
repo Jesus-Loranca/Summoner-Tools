@@ -61,6 +61,10 @@ export class SummonSimulatorComponent {
 		let chancesPool: string[] = [];
 		const oddsMultiplied = this.currentOdds.map((odds) => { return odds * 100 });
 
+		oddsMultiplied.forEach(
+			(value, index) => oddsMultiplied[index] = Math.round((value + Number.EPSILON) * 100) / 100
+		);
+
 		this.reversedRarities.forEach(
 			(value, index) => chancesPool = chancesPool.concat(Array<string>(oddsMultiplied[index]).fill(value.name))
 		);
