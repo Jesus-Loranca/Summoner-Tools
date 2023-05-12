@@ -1,13 +1,16 @@
-<div class="container">
+<div class="container summon-simulator">
 	<div class="row justify-content-center">
 		<div class="py-5 text-center">
 			<h3>Summon Simulator</h3>
 		</div>
 
 		<div class="row pt-3 pb-5">
-			<div class="col-5 col-lg-8 d-flex justify-content-center">
-				<h4 *ngIf="results.length > 0">You've got... a <strong>{{ results[results.length - 1]}}</strong> hero!</h4>
-				<h4 *ngIf="results.length === 0">Good luck in your summon!</h4>
+			<div class="col-5 col-lg-8 d-flex justify-content-center" *ngIf="results.length === 0">
+				<h4 >Good luck in your summon!</h4>
+			</div>
+
+			<div class="col-5 col-lg-8 d-flex justify-content-center" *ngIf="results.length > 0">
+				<h4>You've got... a <strong>{{ results[results.length - 1]}}</strong> hero!</h4>
 			</div>
 
 			<div class="col-7 col-lg-4">
@@ -50,7 +53,7 @@
 
 	<div *ngIf="results.length > 0" class="row pb-5 justify-content-center">
 		<div class="py-5 text-center">
-			<h4>Your last Summons</h4>
+			<h4>Your Summons</h4>
 		</div>
 
 		<div class="row justify-content-center">
