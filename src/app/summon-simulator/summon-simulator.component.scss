@@ -1,14 +1,3 @@
-// .summon-simulator {
-// 	background: center/cover url("../../assets/summon-simulator/summon-simulator-bg.png") no-repeat;
-// 	background-attachment: fixed;
-// 	width: 100%;
-// 	max-width: 100%;
-// 	overflow-x: hidden;
-// 	margin: 0;
-// 	padding-left: 0;
-// 	padding-right: 0;
-// }
-
 .summon-simulator::before {
 	content: "";
 	background: center/cover url("../../assets/summon-simulator/summon-simulator-bg.png") no-repeat;
