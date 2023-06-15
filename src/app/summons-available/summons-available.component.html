@@ -1,3 +1,38 @@
 <div class="container">
-	Summons Available?
+	<div class="row justify-content-center">
+		<div class="py-5 text-center">
+			<h3>How many heroes are you going to use for Summoning?</h3>
+		</div>
+
+		<form class="form-group row justify-content-center" [formGroup]="heroesForm">
+			<div class="row justify-content-center">
+				<input id="number" type="number" formControlName="number" min="5" max="100" value="5" (change)="onHeroesFormChange()">
+			</div>
+		</form>
+	</div>
+
+	<div class="row justify-content-center" *ngIf="numberOfHeroes >= 5">
+		<div class="py-5 text-center">
+			<h3>Add bellow how many Summon Points have each Hero</h3>
+		</div>
+
+		<form class="form-group row justify-content-center" [formGroup]="summonPointsForm" (ngSubmit)="onSubmit()">
+			<div class="col-3 col-md-2 py-2 summon-points-container" *ngFor="let hero of arrayOfHeroes">
+				<label for="{{hero}}">#{{hero+1}}</label>
+				<input id="{{hero}}" type="number" formControlName="{{hero}}" min="1" max="10" value="1">
+			</div>
+
+			<div class="row pt-5 justify-content-center">
+				<div class="col-5 col-lg-3">
+					<button type="submit" class="btn btn-primary w-100">Calculate</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="row py-5 justify-content-center" *ngIf="summonsAvailable > 0">
+		<div class="pt-5 text-center">
+			<h2>You can Summon up to <strong>{{summonsAvailable}}</strong> times.</h2>
+		</div>
+	</div>
 </div>

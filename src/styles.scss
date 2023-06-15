@@ -45,9 +45,9 @@ body {
 			font-weight: 600;
 			height: 40px;
 
-			&:hover {
-				color: #1a1a22;
-				background-color: #ffe87b;
+			&:hover, &:active {
+				color: #1a1a22 !important;
+				background-color: #ffe87b !important;
 				border: none;
 			}
 		}
@@ -58,6 +58,20 @@ body {
 			color: #fff;
 			background-color: #3e4859;
 			border-color: #778cac;
+		}
+
+		input {
+			color: #fff;
+			background-color: #3e4859;
+			border-color: #778cac;
+			text-align: center;
+			border: none;
+
+			&[type=number] {
+				-moz-appearance: textfield;
+				appearance: textfield;
+				margin: 0;
+			}
 		}
 	}
 
